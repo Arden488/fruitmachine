@@ -6,15 +6,21 @@ import javax.swing.border.Border;
 import java.awt.Color;
 
 public class CardView extends JPanel {
-    public CardView() {
+    private JLabel label;
+
+    public CardView(String cardLabel) {
         Border blackline = BorderFactory.createLineBorder(Color.black);
         setLayout(new BorderLayout());
         setBackground(Color.YELLOW);
         setBorder(blackline);
 
-        JLabel label = new JLabel("Joker");
+        label = new JLabel(cardLabel);
         label.setHorizontalAlignment(JLabel.CENTER);
 
         this.add(label, BorderLayout.CENTER);
+    }
+
+    public void update(String cardLabel) {
+        label.setText(cardLabel);
     }
 }
