@@ -1,4 +1,8 @@
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import java.awt.GridLayout;
+import javax.swing.border.EmptyBorder;
 
 /**
  * View class
@@ -8,10 +12,26 @@ import javax.swing.JFrame;
  */
 public class View extends JFrame {
     public View() {
+        final int UNIT = 20;
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(700, 450);
-        setLocation(100, 100);
+        setSize(UNIT * 30, UNIT * 20);
+        setLocation(UNIT * 10, UNIT * 10);
         setTitle("Fruit Machine");
-        // setLayout(new GridLayout(5,2));
+
+        JPanel wrapper = new JPanel();
+        wrapper.setBorder(new EmptyBorder(UNIT, UNIT, UNIT, UNIT));
+        wrapper.setLayout(new GridLayout(2, 2));
+
+        TopLeftView tlv = new TopLeftView(UNIT);
+        TopRightView trv = new TopRightView();
+        BottomLeftView blv = new BottomLeftView(UNIT);
+        BottomRightView brv = new BottomRightView(UNIT);
+
+        wrapper.add(tlv);
+        wrapper.add(trv);
+        wrapper.add(blv);
+        wrapper.add(brv);
+
+        this.add(wrapper);
     }
 }
