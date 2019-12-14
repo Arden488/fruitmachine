@@ -14,13 +14,16 @@ import javax.swing.border.EmptyBorder;
  */
 public class View extends JFrame {
     private Controller controller;
+    private Model model;
     private CardsPanelView cardsPanel;
     private MessagesPanelView messagesPanel;
     public ControlsPanelView controlsPanel;
     public JButton spinButton, newGameButton;
 
-    public View(Controller controller) {
+    public View(Model model, Controller controller) {
         this.controller = controller;
+        this.model = model;
+
         final int UNIT = 20;
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(UNIT * 30, UNIT * 20);
@@ -49,19 +52,17 @@ public class View extends JFrame {
         this.add(wrapper);
     }
 
-    public void updateView(String endGameStatus, String message, String balance, String cardOne, String cardTwo,
-            String cardThree) {
-        messagesPanel.updateBalance(balance);
-        messagesPanel.updateMessage(message);
-        messagesPanel.updateEndGame(endGameStatus);
-        cardsPanel.updateCards(cardOne, cardTwo, cardThree);
+    public void updateView() {
+        messagesPanel.updateBalance(model.getBalanceMessage());
+        messagesPanel.updateMessage(model.getMessage());
+        messagesPanel.updateEndGame(model.getEndGameStatus());
+        cardsPanel.updateCards(model.getCardOne(), model.getCardTwo(), model.getCardThree());
     }
 
-    public void renderView(String endGameStatus, String message, String balance, String cardOne, String cardTwo,
-            String cardThree) {
-        messagesPanel.updateBalance(balance);
-        messagesPanel.updateMessage(message);
-        messagesPanel.updateEndGame(endGameStatus);
-        cardsPanel.renderCards(cardOne, cardTwo, cardThree);
+    public void renderView() {
+        messagesPanel.updateBalance(model.getBalanceMessage());
+        messagesPanel.updateMessage(model.getMessage());
+        messagesPanel.updateEndGame(model.getEndGameStatus());
+        cardsPanel.renderCards(model.getCardOne(), model.getCardTwo(), model.getCardThree());
     }
 }

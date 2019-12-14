@@ -16,8 +16,7 @@ public class Controller implements ActionListener {
 
     public void setView(View view) {
         this.view = view;
-        view.renderView(model.getEndGameStatus(), model.getMessage(), model.getBalanceMessage(), model.getCardOne(),
-                model.getCardTwo(), model.getCardThree());
+        view.renderView();
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -32,8 +31,7 @@ public class Controller implements ActionListener {
 
     private void doSpin() {
         model.spinCards();
-        view.updateView(model.getEndGameStatus(), model.getMessage(), model.getBalanceMessage(), model.getCardOne(),
-                model.getCardTwo(), model.getCardThree());
+        view.updateView();
 
         if (model.getGameEnded()) {
             view.controlsPanel.newGameButton.setEnabled(true);
@@ -45,7 +43,6 @@ public class Controller implements ActionListener {
         view.controlsPanel.newGameButton.setEnabled(false);
         view.controlsPanel.spinButton.setEnabled(true);
         model.reset();
-        view.updateView(model.getEndGameStatus(), model.getMessage(), model.getBalanceMessage(), model.getCardOne(),
-                model.getCardTwo(), model.getCardThree());
+        view.updateView();
     }
 }
