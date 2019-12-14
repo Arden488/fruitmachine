@@ -5,11 +5,9 @@ import java.util.Random;
 public class CardsPanelView extends JPanel {
     public CardView cardOne, cardTwo, cardThree;
 
-    public CardsPanelView(int UNIT) {
+    public CardsPanelView(int UNIT, String cardOneLabel, String cardTwoLabel, String cardThreeLabel) {
         setLayout(new GridLayout(1, 3, UNIT, UNIT));
-    }
 
-    public void renderCards(String cardOneLabel, String cardTwoLabel, String cardThreeLabel) {
         cardOne = new CardView(cardOneLabel);
         cardTwo = new CardView(cardTwoLabel);
         cardThree = new CardView(cardThreeLabel);

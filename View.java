@@ -37,13 +37,14 @@ public class View extends JFrame {
         wrapper.setBorder(new EmptyBorder(UNIT, UNIT, UNIT, UNIT));
         wrapper.setLayout(new GridLayout(2, 2));
 
-        messagesPanel = new MessagesPanelView(UNIT);
+        messagesPanel = new MessagesPanelView(UNIT, model.getBalanceMessage(), model.getMessage(),
+                model.getEndGameStatus());
         wrapper.add(messagesPanel);
 
         JPanel emptyPanel = new JPanel();
         wrapper.add(emptyPanel);
 
-        cardsPanel = new CardsPanelView(UNIT);
+        cardsPanel = new CardsPanelView(UNIT, model.getCardOne(), model.getCardTwo(), model.getCardThree());
         wrapper.add(cardsPanel);
 
         controlsPanel = new ControlsPanelView(UNIT, controller);
@@ -57,12 +58,5 @@ public class View extends JFrame {
         messagesPanel.updateMessage(model.getMessage());
         messagesPanel.updateEndGame(model.getEndGameStatus());
         cardsPanel.updateCards(model.getCardOne(), model.getCardTwo(), model.getCardThree());
-    }
-
-    public void renderView() {
-        messagesPanel.updateBalance(model.getBalanceMessage());
-        messagesPanel.updateMessage(model.getMessage());
-        messagesPanel.updateEndGame(model.getEndGameStatus());
-        cardsPanel.renderCards(model.getCardOne(), model.getCardTwo(), model.getCardThree());
     }
 }

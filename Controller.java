@@ -16,12 +16,15 @@ public class Controller implements ActionListener {
 
     public void setView(View view) {
         this.view = view;
-        view.renderView();
     }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == view.controlsPanel.spinButton) {
             doSpin();
+
+            if (model.getGameEnded()) {
+                setEndGame();
+            }
         }
 
         if (e.getSource() == view.controlsPanel.newGameButton) {
@@ -32,11 +35,12 @@ public class Controller implements ActionListener {
     private void doSpin() {
         model.spinCards();
         view.updateView();
+    }
 
-        if (model.getGameEnded()) {
-            view.controlsPanel.newGameButton.setEnabled(true);
-            view.controlsPanel.spinButton.setEnabled(false);
-        }
+    private void setEndGame() {
+
+        view.controlsPanel.newGameButton.setEnabled(true);
+        view.controlsPanel.spinButton.setEnabled(false);
     }
 
     private void startNewGame() {

@@ -6,13 +6,13 @@ import javax.swing.border.EmptyBorder;
 public class MessagesPanelView extends JPanel {
     private JLabel balanceLabel, statusLabel, messageLabel;
 
-    public MessagesPanelView(int UNIT) {
+    public MessagesPanelView(int UNIT, String balance, String message, String status) {
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(0, 0, UNIT, 0));
 
-        balanceLabel = new JLabel();
-        messageLabel = new JLabel();
-        statusLabel = new JLabel();
+        balanceLabel = new JLabel(balance);
+        messageLabel = new JLabel(message);
+        statusLabel = new JLabel(status);
 
         this.add(balanceLabel, BorderLayout.NORTH);
         this.add(messageLabel, BorderLayout.CENTER);
