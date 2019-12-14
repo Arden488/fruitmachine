@@ -16,6 +16,7 @@ public class View extends JFrame {
     private Controller controller;
     private CardsPanelView cardsPanel;
     private MessagesPanelView messagesPanel;
+    public ControlsPanelView controlsPanel;
     public JButton spinButton, newGameButton;
 
     public View(Controller controller) {
@@ -25,37 +26,25 @@ public class View extends JFrame {
         setSize(UNIT * 30, UNIT * 20);
         setLocation(UNIT * 10, UNIT * 10);
         setTitle("Fruit Machine");
+        renderPanels(UNIT);
+    }
 
+    private void renderPanels(int UNIT) {
         JPanel wrapper = new JPanel();
         wrapper.setBorder(new EmptyBorder(UNIT, UNIT, UNIT, UNIT));
         wrapper.setLayout(new GridLayout(2, 2));
 
         messagesPanel = new MessagesPanelView(UNIT);
-        EmptyPanelView emptyPanel = new EmptyPanelView();
-        cardsPanel = new CardsPanelView(UNIT);
-        // ControlsPanelView brv = new ControlsPanelView(UNIT, controller, spinButton,
-        // newGameButton);
-
         wrapper.add(messagesPanel);
+
+        JPanel emptyPanel = new JPanel();
         wrapper.add(emptyPanel);
+
+        cardsPanel = new CardsPanelView(UNIT);
         wrapper.add(cardsPanel);
-        // wrapper.add(brv);
 
-        spinButton = new JButton("spin");
-        newGameButton = new JButton("new game");
-
-        spinButton.addActionListener(controller);
-        newGameButton.addActionListener(controller);
-        newGameButton.setEnabled(false);
-
-        JPanel buttonBox = new JPanel();
-        buttonBox.setLayout(new GridLayout(2, 1));
-        buttonBox.setBorder(new EmptyBorder(UNIT * 2, UNIT * 3, UNIT * 2, UNIT * 3));
-
-        buttonBox.add(spinButton);
-        buttonBox.add(newGameButton);
-
-        wrapper.add(buttonBox, BorderLayout.CENTER);
+        controlsPanel = new ControlsPanelView(UNIT, controller);
+        wrapper.add(controlsPanel, BorderLayout.CENTER);
 
         this.add(wrapper);
     }

@@ -1,7 +1,5 @@
 import java.awt.event.*;
 
-import javax.swing.JOptionPane;
-
 /**
  * Controller class
  * Listens to events, updates model and view
@@ -23,20 +21,20 @@ public class Controller implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == view.spinButton) {
+        if (e.getSource() == view.controlsPanel.spinButton) {
             model.spinCards();
             view.updateView(model.getEndGameStatus(), model.getMessage(), model.getBalanceMessage(), model.getCardOne(),
                     model.getCardTwo(), model.getCardThree());
 
             if (model.getGameEnded()) {
-                view.newGameButton.setEnabled(true);
-                view.spinButton.setEnabled(false);
+                view.controlsPanel.newGameButton.setEnabled(true);
+                view.controlsPanel.spinButton.setEnabled(false);
             }
         }
 
-        if (e.getSource() == view.newGameButton) {
-            view.newGameButton.setEnabled(false);
-            view.spinButton.setEnabled(true);
+        if (e.getSource() == view.controlsPanel.newGameButton) {
+            view.controlsPanel.newGameButton.setEnabled(false);
+            view.controlsPanel.spinButton.setEnabled(true);
             model.reset();
             view.updateView(model.getEndGameStatus(), model.getMessage(), model.getBalanceMessage(), model.getCardOne(),
                     model.getCardTwo(), model.getCardThree());
