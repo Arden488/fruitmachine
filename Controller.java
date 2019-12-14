@@ -23,7 +23,7 @@ public class Controller implements ActionListener {
             doSpin();
 
             if (model.getGameEnded()) {
-                setEndGame();
+                setEndGameControls();
             }
         }
 
@@ -37,8 +37,7 @@ public class Controller implements ActionListener {
         view.updateView();
     }
 
-    private void setEndGame() {
-
+    private void setEndGameControls() {
         view.controlsPanel.newGameButton.setEnabled(true);
         view.controlsPanel.spinButton.setEnabled(false);
     }

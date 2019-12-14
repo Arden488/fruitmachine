@@ -20,8 +20,6 @@ public class ControlsPanelView extends JPanel {
 
         this.add(spinButton);
         this.add(newGameButton);
-
-        // this.add(buttonBox, BorderLayout.CENTER);
     }
 
     public JButton getSpinButton() {
