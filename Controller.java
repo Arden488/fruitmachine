@@ -22,22 +22,30 @@ public class Controller implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == view.controlsPanel.spinButton) {
-            model.spinCards();
-            view.updateView(model.getEndGameStatus(), model.getMessage(), model.getBalanceMessage(), model.getCardOne(),
-                    model.getCardTwo(), model.getCardThree());
-
-            if (model.getGameEnded()) {
-                view.controlsPanel.newGameButton.setEnabled(true);
-                view.controlsPanel.spinButton.setEnabled(false);
-            }
+            doSpin();
         }
 
         if (e.getSource() == view.controlsPanel.newGameButton) {
-            view.controlsPanel.newGameButton.setEnabled(false);
-            view.controlsPanel.spinButton.setEnabled(true);
-            model.reset();
-            view.updateView(model.getEndGameStatus(), model.getMessage(), model.getBalanceMessage(), model.getCardOne(),
-                    model.getCardTwo(), model.getCardThree());
+            startNewGame();
         }
+    }
+
+    private void doSpin() {
+        model.spinCards();
+        view.updateView(model.getEndGameStatus(), model.getMessage(), model.getBalanceMessage(), model.getCardOne(),
+                model.getCardTwo(), model.getCardThree());
+
+        if (model.getGameEnded()) {
+            view.controlsPanel.newGameButton.setEnabled(true);
+            view.controlsPanel.spinButton.setEnabled(false);
+        }
+    }
+
+    private void startNewGame() {
+        view.controlsPanel.newGameButton.setEnabled(false);
+        view.controlsPanel.spinButton.setEnabled(true);
+        model.reset();
+        view.updateView(model.getEndGameStatus(), model.getMessage(), model.getBalanceMessage(), model.getCardOne(),
+                model.getCardTwo(), model.getCardThree());
     }
 }
